@@ -1,0 +1,176 @@
+[
+  {
+    "id": 1,
+    "title": "Amazon Jungle Expedition",
+    "image": "https://i.ibb.co.com/BjdSp2B/11.jpg",
+    "category": "Forest",
+    "shortDescription": "Venture into the heart of the Amazon rainforest to explore its rich biodiversity.",
+    "cost": 450,
+    "availability": true,
+    "location": "Amazon Rainforest, Brazil",
+    "duration": "7 Days",
+    "adventureLevel": "Challenging",
+    "includedItems": [
+      "Guided forest trek",
+      "Meals (Organic, locally sourced)",
+      "Rain gear",
+      "Camping equipment"
+    ],
+    "ecoFriendlyFeatures": [
+      "Reusable camping gear",
+      "Support for indigenous communities",
+      "Eco-friendly waste management"
+    ],
+    "maxGroupSize": 10,
+    "specialInstructions": [
+      "Carry insect repellent.",
+      "Wear lightweight, long-sleeved clothing.",
+      "Avoid disturbing wildlife."
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Congo Rainforest Adventure",
+    "image": "https://i.ibb.co.com/THYch0b/12.jpg",
+    "category": "Forest",
+    "shortDescription": "Immerse yourself in the Congo rainforest and discover its hidden wonders.",
+    "cost": 400,
+    "availability": true,
+    "location": "Congo Basin, Africa",
+    "duration": "5 Days",
+    "adventureLevel": "Moderate",
+    "includedItems": [
+      "Local guide",
+      "Forest-friendly meals",
+      "Binoculars for wildlife spotting",
+      "First-aid kit"
+    ],
+    "ecoFriendlyFeatures": [
+      "Solar-powered equipment",
+      "Plastic-free operations",
+      "Sustainable tourism initiatives"
+    ],
+    "maxGroupSize": 8,
+    "specialInstructions": [
+      "Avoid using flash photography.",
+      "Stay on designated trails.",
+      "Respect local customs and traditions."
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Borneo Wildlife Expedition",
+    "image": "https://i.ibb.co.com/58vR7jm/13.jpg",
+    "category": "Forest",
+    "shortDescription": "Explore the lush rainforests of Borneo and spot exotic wildlife.",
+    "cost": 350,
+    "availability": false,
+    "location": "Borneo, Malaysia",
+    "duration": "4 Days",
+    "adventureLevel": "Easy",
+    "includedItems": [
+      "Wildlife expert guide",
+      "Snacks and refreshments",
+      "Birdwatching equipment",
+      "Eco-lodge accommodation"
+    ],
+    "ecoFriendlyFeatures": [
+      "Eco-certified lodges",
+      "Support for local conservation programs",
+      "Recycling and waste reduction initiatives"
+    ],
+    "maxGroupSize": 12,
+    "specialInstructions": [
+      "Bring sturdy hiking boots.",
+      "Use eco-friendly insect repellent.",
+      "Respect the natural habitat of animals."
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Redwood Forest Camping",
+    "image": "https://i.ibb.co.com/c8McCGB/14.jpg",
+    "category": "Forest",
+    "shortDescription": "Camp among the giant redwoods and reconnect with nature.",
+    "cost": 200,
+    "availability": true,
+    "location": "California, USA",
+    "duration": "3 Days",
+    "adventureLevel": "Easy",
+    "includedItems": [
+      "Camping tent",
+      "Portable cooking kit",
+      "Maps and trail guides",
+      "Firewood (sustainably sourced)"
+    ],
+    "ecoFriendlyFeatures": [
+      "No-trace camping policy",
+      "Biodegradable supplies",
+      "Partnership with forest preservation groups"
+    ],
+    "maxGroupSize": 15,
+    "specialInstructions": [
+      "Keep noise to a minimum.",
+      "Follow fire safety rules.",
+      "Carry out all trash."
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Black Forest Trekking",
+    "image": "https://i.ibb.co.com/THpf678/15.jpg",
+    "category": "Forest",
+    "shortDescription": "Trek through the mystical Black Forest and enjoy stunning scenery.",
+    "cost": 250,
+    "availability": true,
+    "location": "Black Forest, Germany",
+    "duration": "4 Days",
+    "adventureLevel": "Moderate",
+    "includedItems": [
+      "Experienced trekking guide",
+      "Meals and refreshments",
+      "Trail map",
+      "Overnight shelter"
+    ],
+    "ecoFriendlyFeatures": [
+      "Minimal impact trekking routes",
+      "Sustainable local partnerships",
+      "Promotes biodiversity conservation"
+    ],
+    "maxGroupSize": 10,
+    "specialInstructions": [
+      "Wear weather-appropriate clothing.",
+      "Bring a refillable water bottle.",
+      "Do not pick plants or disturb wildlife."
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Amazon Canopy Walkway",
+    "image": "https://i.ibb.co.com/mzchq28/16.jpg",
+    "category": "Forest",
+    "shortDescription": "Experience the Amazon rainforest from above on canopy walkways.",
+    "cost": 300,
+    "availability": true,
+    "location": "Amazon Rainforest, Peru",
+    "duration": "2 Days",
+    "adventureLevel": "Easy",
+    "includedItems": [
+      "Access to canopy walkways",
+      "Local expert guide",
+      "Meals (breakfast and lunch)",
+      "Safety equipment"
+    ],
+    "ecoFriendlyFeatures": [
+      "Non-invasive construction techniques",
+      "Support for reforestation efforts",
+      "Zero plastic policy"
+    ],
+    "maxGroupSize": 8,
+    "specialInstructions": [
+      "Do not drop items from the walkways.",
+      "Wear non-slip footwear.",
+      "Keep noise levels low."
+    ]
+  }
+]
