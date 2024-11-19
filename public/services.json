@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "title": "Forest Camping",
+        "description": "Immerse yourself in nature with our exclusive camping packages in the forest.",
+        "image": "https://i.ibb.co.com/vv7NvyR/service1.jpg"
+    },
+    {
+        "id": 2,
+        "title": "Forest Trekking",
+        "description": "Explore the untamed beauty of forests with our guided trekking tours.",
+        "image": "https://i.ibb.co.com/k5JdrK2/service2.jpg"
+    },
+    {
+        "id": 3,
+        "title": "Wildlife Safari",
+        "description": "Experience the thrill of spotting wildlife in their natural forest habitat.",
+        "image": "https://i.ibb.co.com/0BfdV2G/service3.jpg"
+    },
+    {
+        "id": 4,
+        "title": "Forest Retreat",
+        "description": "Escape to a peaceful forest retreat to relax and rejuvenate amidst nature.",
+        "image": "https://i.ibb.co.com/2dW2dDc/service4.jpg"
+    },
+    {
+        "id": 5,
+        "title": "Forest Survival Training",
+        "description": "Learn essential survival skills in the forest with our expert trainers.",
+        "image": "https://i.ibb.co.com/6Brw2kt/service5.jpg"
+    },
+    {
+        "id": 6,
+        "title": "Night in the Forest",
+        "description": "Spend a night in the forest under the stars for an unforgettable experience.",
+        "image": "https://i.ibb.co.com/9sF7xhc/service6.jpg"
+    }
+]

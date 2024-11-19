@@ -6,7 +6,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { NavLink } from "react-router-dom";
 
-const Banner = ({ services }) => {
+const Banner = ({ adventureData }) => {
     return (
         <div className="w-11/12 mx-auto py-5">
             <Swiper
@@ -22,7 +22,7 @@ const Banner = ({ services }) => {
                     1024: { slidesPerView: 1 },
                 }}
             >
-                {services.map((service) => (
+                {adventureData.map((service) => (
                     <SwiperSlide key={service.id}>
                         <div className="relative w-[100%] h-[500px]">
                             <img
@@ -54,7 +54,7 @@ const Banner = ({ services }) => {
 };
 
 Banner.propTypes = {
-    services: PropTypes.arrayOf(
+    adventureData: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.number.isRequired,
             image: PropTypes.string.isRequired,

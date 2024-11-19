@@ -16,7 +16,6 @@ const Register = () => {
         const photoURL = e.target.photoURL.value
         const password = e.target.password.value
         const conPassword = e.target.conPassword.value
-        console.log(name, photoURL, conPassword);
         if(password !== conPassword){
             setError("Password didn't match")
             return;
@@ -27,7 +26,7 @@ const Register = () => {
         }
         handleRegister(email, password)
         .then(res => {
-            manageProfile({displayName: name, photo: photoURL})
+            manageProfile({displayName: name, photoURL: photoURL})
             .then(() => navigate("/"))
             
             const user = res.user

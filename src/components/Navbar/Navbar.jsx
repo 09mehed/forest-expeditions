@@ -42,8 +42,7 @@ const Navbar = () => {
             <div className="navbar-end gap-5">
                 {
                     user && user?.email ? <div>
-                        <img className="w-10 rounded-full" src={user.photoURL} alt="" />
-                        <p>{user.displayName}</p>
+                        <img className="w-16 rounded-full" src={user.photoURL} alt="" />
                     </div> :
                         <img src={userIcon} alt="" />
                 }
