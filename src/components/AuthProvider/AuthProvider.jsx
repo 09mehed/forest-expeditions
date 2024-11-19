@@ -23,10 +23,8 @@ const AuthProvider = ({children}) => {
     const handleGoogleLogin = () => {
         return signInWithPopup(auth, googleProvider)
     }
-    const manageProfile = (name, image) => {
-        updateProfile(auth.currentUser, {
-            displayName: name, photoURL: image
-        })
+    const manageProfile = (manageData) => {
+        return updateProfile(auth.currentUser, manageData)
     }
     const authInfo = {
         handleGoogleLogin,

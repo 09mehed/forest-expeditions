@@ -1,9 +1,10 @@
 import { useContext, useState } from "react";
 import { authContext } from "../AuthProvider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const Login = () => {
-    const { handleLogin, handleGoogleLogin } = useContext(authContext)
+    const { handleLogin, handleGoogleLogin, setUser } = useContext(authContext)
     const [error, setError] = useState('')
     const location = useLocation()
     const navigate = useNavigate()
@@ -14,6 +15,9 @@ const Login = () => {
         handleLogin(email, password)
         .then(res => {
             navigate(location.state.from)
+            const user = res.user
+            setUser(user)
+            navigate(location?.state ? location.state : "/") 
         })
         .catch(err => {
             setError(err.message)
@@ -21,12 +25,15 @@ const Login = () => {
     }
     const googleLoginHandler = () => {
         handleGoogleLogin()
-        .then(res => {
-            navigate(location.state.from)
+        .then(() => {
+            navigate(location?.state ? location.state : "/") 
         })
     }
     return (
         <div className="w-11/12 mx-auto py-5">
+            <Helmet>
+                <title>Forest Expeditions | login</title>
+            </Helmet>
             <div className="min-h-screen flex items-center justify-center bg-gray-100">
                 <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
                     <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">
@@ -65,6 +72,9 @@ const Login = () => {
                                 required
                             />
                         </div>
+                        {
+                            error.login && <label className="label">{error.login}</label>
+                        }
                         <div className="mb-4">
                             <a
                                 href="#"

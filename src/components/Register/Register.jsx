@@ -1,8 +1,12 @@
 import { useContext, useState } from "react";
 import { authContext } from "../AuthProvider/AuthProvider";
+import { Helmet } from "react-helmet";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Register = () => {
-    const {handleRegister, manageProfile, handleGoogleLogin} = useContext(authContext)
+    const {handleRegister, manageProfile, handleGoogleLogin, setUser} = useContext(authContext)
+    const location = useLocation()
+    const navigate = useNavigate()
     const [error, setError] = useState('')
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -23,11 +27,19 @@ const Register = () => {
         }
         handleRegister(email, password)
         .then(res => {
-            manageProfile(name, photoURL)
+            manageProfile({displayName: name, photo: photoURL})
+            .then(() => navigate("/"))
+            
+            const user = res.user
+            setUser(user)
+            navigate(location?.state ? location.state : "/") 
         })
     }
     return (
         <div className="w-11/12 mx-auto py-5">
+            <Helmet>
+                <title>Forest Expeditions | register</title>
+            </Helmet>
             <div className="h-[700px] flex items-center justify-center bg-gray-100">
                 <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
                     <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">

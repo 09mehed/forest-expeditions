@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
-
+import { authContext } from "../AuthProvider/AuthProvider";
+import userIcon from '../../assets/user.png'
 const Navbar = () => {
+    const { user, handleSignOut } = useContext(authContext)
     return (
         <div className="navbar w-11/12 mx-auto items-center">
             <div className="navbar-start">
@@ -36,10 +39,20 @@ const Navbar = () => {
                     <NavLink to='userProfile' className='ml-4'>User Profile</NavLink>
                 </ul>
             </div>
-            <div className="navbar-end">
-                <NavLink to='login'>
-                    <button className="btn btn-primary">Login</button> 
-                </NavLink>
+            <div className="navbar-end gap-5">
+                {
+                    user && user?.email ? <div>
+                        <img className="w-10 rounded-full" src={user.photoURL} alt="" />
+                        <p>{user.displayName}</p>
+                    </div> :
+                        <img src={userIcon} alt="" />
+                }
+                {
+                    user && user?.email ? (<button onClick={handleSignOut} className="btn btn-primary">Log-Out</button>) : (<NavLink to='login'>
+                        <button className="btn btn-primary">Login</button>
+                    </NavLink>)
+                }
+
             </div>
         </div>
     );
