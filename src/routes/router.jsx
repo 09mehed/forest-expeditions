@@ -29,13 +29,13 @@ const router = createBrowserRouter([
                 }
             },
             {
-                path: 'updateProfile',
+                path: '/updateProfile',
                 element: <PrivateRoute>
                     <UpdateProfile></UpdateProfile>
                 </PrivateRoute>
             },
             {
-                path: 'userProfile',
+                path: '/userProfile',
                 element: <PrivateRoute>
                     <UserProfile></UserProfile>
                 </PrivateRoute>

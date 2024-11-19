@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
 const Login = () => {
-    const { handleLogin, handleGoogleLogin, setUser } = useContext(authContext)
+    const { handleLogin, handleGoogleLogin, setUser, resetPassword } = useContext(authContext)
     const [error, setError] = useState('')
     const location = useLocation()
     const navigate = useNavigate()
@@ -76,12 +76,12 @@ const Login = () => {
                             error.login && <label className="label">{error.login}</label>
                         }
                         <div className="mb-4">
-                            <a
-                                href="#"
+                            <button
+                                onClick={resetPassword}
                                 className="text-sm text-blue-500 hover:underline"
                             >
                                 Forget Password?
-                            </a>
+                            </button>
                         </div>
                         <button
                             type="submit"

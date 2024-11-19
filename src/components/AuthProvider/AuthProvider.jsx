@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, GoogleAuthProvider,onAuthStateChanged,signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, GoogleAuthProvider,onAuthStateChanged,sendPasswordResetEmail,signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from '../../Firebase/firebase.config'
 
@@ -26,6 +26,15 @@ const AuthProvider = ({children}) => {
     const manageProfile = (manageData) => {
         return updateProfile(auth.currentUser, manageData)
     }
+    const resetPassword = (email) => {
+        sendPasswordResetEmail(auth, email.value)
+        .then(() => {
+            alert("A password link has been sent to your email")
+        })
+        .catch(error => {
+            console.log(error.message);
+        })
+    }
     const authInfo = {
         handleGoogleLogin,
         handleLogin,
@@ -34,7 +43,8 @@ const AuthProvider = ({children}) => {
         user, 
         setUser,
         manageProfile,
-        loading
+        loading,
+        resetPassword
     }
 
     useEffect(() => {
