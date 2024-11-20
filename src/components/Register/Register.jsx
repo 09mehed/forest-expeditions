@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { authContext } from "../AuthProvider/AuthProvider";
 import { Helmet } from "react-helmet";
 import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 const Register = () => {
     const {handleRegister, manageProfile, handleGoogleLogin, setUser} = useContext(authContext)
@@ -32,6 +33,9 @@ const Register = () => {
             const user = res.user
             setUser(user)
             navigate(location?.state ? location.state : "/") 
+            toast.success("Successfully logged in!", {
+                position: "top-center",
+            });
         })
     }
     return (

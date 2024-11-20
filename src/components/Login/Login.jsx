@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { sendPasswordResetEmail } from "firebase/auth";
 import auth from "../../Firebase/firebase.config";
+import { toast } from 'react-toastify';
 
 const Login = () => {
     const { handleLogin, handleGoogleLogin, setUser} = useContext(authContext)
@@ -11,19 +12,26 @@ const Login = () => {
     const location = useLocation()
     const navigate = useNavigate()
     const emailRef = useRef()
+
     const handleSubmit = (e) => {
         e.preventDefault()
         const email = e.target.email.value
         const password = e.target.password.value
         handleLogin(email, password)
         .then(res => {
-            navigate(location.state.from)
+            // navigate(location.state.from)
             const user = res.user
             setUser(user)
             navigate(location?.state ? location.state : "/") 
+            toast.success("Successfully logged in!", {
+                position: "top-center",
+            });
         })
         .catch(err => {
-            setError(err.message)
+            setError(err.message);
+            toast.error("Login failed! Please try again.", {
+                position: "top-center",
+            });
         })
     }
     const googleLoginHandler = () => {
@@ -39,7 +47,7 @@ const Login = () => {
         }else{
             sendPasswordResetEmail(auth, email)
             .then(() => {
-                alert("Password reset email send, please check your email")
+                toast("Password reset email send, please check your email")
             })
         }
     }
