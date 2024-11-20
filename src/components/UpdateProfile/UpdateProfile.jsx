@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet";
 import { toast } from 'react-toastify';
 
 const UpdateProfile = () => {
-  const { user } = useContext(authContext); 
+  const { user, setUser } = useContext(authContext); 
   const [name, setName] = useState(user?.displayName || "");
   const [photoURL, setPhotoURL] = useState(user?.photoURL || "");
   const navigate = useNavigate();
@@ -14,20 +14,28 @@ const UpdateProfile = () => {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      await updateProfile(user, {
-        displayName: name,
-        photoURL: photoURL,
-      });
-
-      toast.success("Profile updated successfully!", {
-        position: "top-center",
-    });
-      navigate("/userProfile");
+      if (user) {
+        await updateProfile(user, {
+          displayName: name,
+          photoURL: photoURL,
+        });
+        setUser((prevUser) => ({
+          ...prevUser,
+          displayName: name,
+          photoURL: photoURL,
+        }));
+        toast.success("Profile updated successfully!", {
+          position: "top-center",
+        });
+        navigate("/userProfile");
+      } else {
+        throw new Error("User not found");
+      }
     } catch (error) {
       console.error("Error updating profile:", error);
-      toast.success("Failed to update profile", {
+      toast.error("Failed to update profile", {
         position: "top-center",
-    });
+      });
     }
   };
 

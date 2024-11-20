@@ -28,7 +28,12 @@ const Register = () => {
         handleRegister(email, password)
         .then(res => {
             manageProfile({displayName: name, photoURL: photoURL})
-            .then(() => navigate("/"))
+            .then(() => {
+                setUser((prevUser) => {
+                    return{...prevUser, displayName: name, photoURL: photoURL}
+                })
+                navigate("/")
+            })
             
             const user = res.user
             setUser(user)

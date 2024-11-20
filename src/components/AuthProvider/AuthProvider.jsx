@@ -9,6 +9,7 @@ const AuthProvider = ({children}) => {
     const googleProvider = new GoogleAuthProvider()
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
+    const [userProfile, setUserProfile] = useState(null);
     
     const handleRegister = (email,password) => {
        return createUserWithEmailAndPassword(auth, email, password)
@@ -23,17 +24,9 @@ const AuthProvider = ({children}) => {
         return signInWithPopup(auth, googleProvider)
     }
     const manageProfile = (manageData) => {
+        setUserProfile(manageData.photoURL);
         return updateProfile(auth.currentUser, manageData)
     }
-    // const resetPassword = () => {
-    //     sendPasswordResetEmail(auth, email)
-    //     .then(() => {
-    //         alert("A password link has been sent to your email")
-    //     })
-    //     .catch(error => {
-    //         console.log(error.message);
-    //     })
-    // }
     const authInfo = {
         handleGoogleLogin,
         handleLogin,
@@ -43,7 +36,7 @@ const AuthProvider = ({children}) => {
         setUser,
         manageProfile,
         loading,
-        // resetPassword
+        userProfile
     }
 
     useEffect(() => {

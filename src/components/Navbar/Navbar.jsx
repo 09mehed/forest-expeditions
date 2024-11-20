@@ -7,6 +7,15 @@ import 'animate.css';
 const Navbar = () => {
     const { user, handleSignOut } = useContext(authContext)
     const [showAnimation, setShowAnimation] = useState(false);
+
+    const [userPhoto, setUserPhoto] = useState(user?.photoURL || userIcon); 
+
+    useEffect(() => {
+        if (user) {
+            setUserPhoto(user.photoURL || userIcon);
+        }
+    }, [user]);
+
     useEffect(() => {
         setShowAnimation(true);
     }, []);
@@ -50,7 +59,8 @@ const Navbar = () => {
                     <div className="relative group">
                         <img
                             className="w-12 h-12 rounded-full cursor-pointer border-2 border-white"
-                            src={user?.photoURL || userIcon}
+                            // src={user?.photoURL || userIcon}
+                            src={userPhoto}
                             alt="User Profile"
                         />
                         <span className="absolute left-1/2 transform -translate-x-1/2 bottom-[-30px] bg-black text-white text-sm rounded-md py-1 px-3 opacity-0 group-hover:opacity-100 transition-opacity">

@@ -19,10 +19,11 @@ const Login = () => {
         const password = e.target.password.value
         handleLogin(email, password)
         .then(res => {
-            // navigate(location.state.from)
             const user = res.user
             setUser(user)
-            navigate(location?.state ? location.state : "/") 
+            // navigate(location?.state ? location.state : "/") 
+            const redirectTo = location?.state?.from || '/'; 
+            navigate(redirectTo);
             toast.success("Successfully logged in!", {
                 position: "top-center",
             });
@@ -47,7 +48,9 @@ const Login = () => {
         }else{
             sendPasswordResetEmail(auth, email)
             .then(() => {
-                toast("Password reset email send, please check your email")
+                toast.success("Password reset email send, please check your email", {
+                    position: "top-center",
+                })
             })
         }
     }
@@ -71,7 +74,6 @@ const Login = () => {
                             </label>
                             <input
                                 type="email"
-                                id="email"
                                 name="email"
                                 ref={emailRef}
                                 className="w-full p-2 mt-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -88,7 +90,6 @@ const Login = () => {
                             </label>
                             <input
                                 type="password"
-                                id="password"
                                 name="password"
                                 className="w-full p-2 mt-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 placeholder="Enter your password"
@@ -114,6 +115,7 @@ const Login = () => {
                         </button>
                     </form>
                     {error && <p className="text-red-500 font-semibold">{error.split("/")[1].slice(0, 18)}</p>}
+
                     <p>Do not have any account? Please <Link className="text-red-600 font-semibold" to='/register'>Register</Link> or <button onClick={googleLoginHandler} className="text-green-600 font-semibold">Google</button></p>
 
                 </div>
