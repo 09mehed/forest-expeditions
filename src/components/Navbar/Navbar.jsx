@@ -1,13 +1,19 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { authContext } from "../AuthProvider/AuthProvider";
 import userIcon from '../../assets/user.png'
+import 'animate.css';
+
 const Navbar = () => {
     const { user, handleSignOut } = useContext(authContext)
+    const [showAnimation, setShowAnimation] = useState(false);
+    useEffect(() => {
+        setShowAnimation(true);
+    }, []);
     return (
-        <div className="navbar w-11/12 mx-auto items-center">
+        <div className={`navbar w-11/12 mx-auto items-center ${showAnimation ? 'animate__animated animate__fadeInDown' : ''}`}>
             <div className="navbar-start">
-                <div className="dropdown">
+                <div className="dropdown relative">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -24,7 +30,7 @@ const Navbar = () => {
                     </div>
                     <ul
                         tabIndex={0}
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1000] absolute top-full mt-1 w-52 p-2 shadow">
                         <NavLink to='/'>Home</NavLink>
                         <NavLink to='updateProfile' className='ml-4'>Update Profile</NavLink>
                         <NavLink to='userProfile' className='ml-4'>User Profile</NavLink>
@@ -40,12 +46,21 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end gap-5">
-                {
-                    user && user?.email ? <div>
-                        <img className="w-16 rounded-full" src={user.photoURL} alt="" />
-                    </div> :
-                        <img src={userIcon} alt="" />
-                }
+                {user && user?.email ? (
+                    <div className="relative group">
+                        <img
+                            className="w-12 h-12 rounded-full cursor-pointer border-2 border-white"
+                            src={user?.photoURL || userIcon}
+                            alt="User Profile"
+                        />
+                        <span className="absolute left-1/2 transform -translate-x-1/2 bottom-[-30px] bg-black text-white text-sm rounded-md py-1 px-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                            {user?.displayName || "User"}
+                        </span>
+                    </div>
+                ) : (
+                    <img className="w-12 h-12 rounded-full" src={userIcon} alt="Default User Icon" />
+                )}
+
                 {
                     user && user?.email ? (<button onClick={handleSignOut} className="btn btn-primary">Log-Out</button>) : (<NavLink to='login'>
                         <button className="btn btn-primary">Login</button>

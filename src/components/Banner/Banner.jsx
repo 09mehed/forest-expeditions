@@ -5,8 +5,12 @@ import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { NavLink } from "react-router-dom";
+import 'animate.css';
+import { useState } from "react";
 
 const Banner = ({ adventureData }) => {
+    const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+
     return (
         <div className="w-11/12 mx-auto py-5">
             <Swiper
@@ -21,25 +25,42 @@ const Banner = ({ adventureData }) => {
                     768: { slidesPerView: 1 },
                     1024: { slidesPerView: 1 },
                 }}
+                onSlideChange={(swiper) => setCurrentSlideIndex(swiper.activeIndex)} 
             >
-                {adventureData.map((service) => (
+                {adventureData.map((service, index) => (
                     <SwiperSlide key={service.id}>
                         <div className="relative w-[100%] h-[500px]">
                             <img
                                 src={service.image}
                                 alt={service.title}
-                                className="w-full h-full object-cover rounded-lg bg-cover bg-no-repeat bg-center"
+                                className={`w-full h-full object-cover rounded-lg bg-cover bg-no-repeat bg-center ${
+                                    currentSlideIndex === index
+                                        ? "animate__animated animate__fadeIn"
+                                        : ""
+                                }`}
                             />
-                            <div className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-40 text-white text-center rounded-lg p-4">
+                            <div className={`absolute inset-0 flex justify-center items-center bg-black bg-opacity-40 text-white text-center rounded-lg p-4 ${
+                                    currentSlideIndex === index
+                                        ? "animate__animated animate__zoomIn"
+                                        : ""
+                                }`}>
                                 <div>
-                                    <h3 className="font-semibold text-5xl mb-2">{service.title}</h3>
-                                    <ul className="list-disc list-inside text-white text-center text-xl">
+                                    <h3 className={`font-semibold text-5xl mb-2 ${
+                                            currentSlideIndex === index
+                                                ? "animate__animated animate__fadeInDown"
+                                                : ""
+                                        }`}>{service.title}</h3>
+                                    <ul className={`list-disc list-inside text-white text-center text-xl ${
+                                            currentSlideIndex === index
+                                                ? "animate__animated animate__fadeInUp"
+                                                : ""
+                                        }`}>
                                         {service.ecoFriendlyFeatures.map((feature, index) => (
                                             <li className="list-none" key={index}>{feature}</li>
                                         ))}
                                     </ul>
                                     <div className="pt-5">
-                                        <NavLink to={`details/${service.id}`} className="bg-blue-500 px-5 py-3 rounded-lg">
+                                        <NavLink to={`details/${service.id}`} className="bg-blue-500 px-5 py-3 rounded-lg animate__animated animate__pulse animate__infinite">
                                             Explore Now
                                         </NavLink>
                                     </div>

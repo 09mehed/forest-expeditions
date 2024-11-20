@@ -19,11 +19,15 @@ const UpdateProfile = () => {
         photoURL: photoURL,
       });
 
-      toast("Profile updated successfully!");
+      toast.success("Profile updated successfully!", {
+        position: "top-center",
+    });
       navigate("/userProfile");
     } catch (error) {
       console.error("Error updating profile:", error);
-      toast("Failed to update profile.");
+      toast.success("Failed to update profile", {
+        position: "top-center",
+    });
     }
   };
 

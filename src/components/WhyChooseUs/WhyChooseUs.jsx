@@ -1,6 +1,7 @@
 import Choose from "./Choose";
 import PropTypes from "prop-types";
 
+
 const WhyChooseUs = ({ adventureData }) => {
     return (
         <div className="w-11/12 mx-auto">
