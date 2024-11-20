@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { authContext } from "../AuthProvider/AuthProvider";
 import { Helmet } from "react-helmet";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 
 const Register = () => {
@@ -9,6 +9,7 @@ const Register = () => {
     const location = useLocation()
     const navigate = useNavigate()
     const [error, setError] = useState('')
+
     const handleSubmit = (e) => {
         e.preventDefault()
         setError("")
@@ -34,13 +35,19 @@ const Register = () => {
                 })
                 navigate("/")
             })
-            
+          
             const user = res.user
             setUser(user)
             navigate(location?.state ? location.state : "/") 
             toast.success("Successfully logged in!", {
                 position: "top-center",
             });
+        })
+    }
+    const googleLoginHandler = () => {
+        handleGoogleLogin()
+        .then(() => {
+            navigate(location?.state ? location.state : "/") 
         })
     }
     return (
@@ -128,7 +135,7 @@ const Register = () => {
                     </form>
                     
                     {error && <p className="text-red-500">{error}</p>}
-                    <p className="text-center pt-3">Please Register or <button onClick={handleGoogleLogin} className="text-green-600 font-semibold">Google</button></p>
+                    <p>Do not have any account? Please <Link className="text-red-600 font-semibold" to='/login'>Login</Link> or <button onClick={googleLoginHandler} className="text-green-600 font-semibold">Google</button></p>
                 </div>
             </div>
         </div>

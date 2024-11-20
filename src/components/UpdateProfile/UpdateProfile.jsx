@@ -14,23 +14,32 @@ const UpdateProfile = () => {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      if (user) {
-        await updateProfile(user, {
-          displayName: name,
-          photoURL: photoURL,
-        });
-        setUser((prevUser) => ({
-          ...prevUser,
-          displayName: name,
-          photoURL: photoURL,
-        }));
-        toast.success("Profile updated successfully!", {
+      if (!user || !user.auth) {
+        toast.error("User not found or invalid user instance", {
           position: "top-center",
         });
-        navigate("/userProfile");
-      } else {
-        throw new Error("User not found");
+        return;
       }
+
+      await updateProfile(user.auth.currentUser, {
+        displayName: name,
+        photoURL: photoURL,
+      });
+
+      await user.auth.currentUser.reload();
+
+      const updatedUser = {
+        ...user.auth.currentUser,
+        displayName: user.auth.currentUser.displayName,
+        photoURL: user.auth.currentUser.photoURL,
+      };
+      setUser(updatedUser)
+
+      toast.success("Profile updated successfully!", {
+        position: "top-center",
+      });
+
+      navigate("/userProfile");
     } catch (error) {
       console.error("Error updating profile:", error);
       toast.error("Failed to update profile", {
