@@ -1,13 +1,16 @@
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { authContext } from "../AuthProvider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import { sendPasswordResetEmail } from "firebase/auth";
+import auth from "../../Firebase/firebase.config";
 
 const Login = () => {
-    const { handleLogin, handleGoogleLogin, setUser, resetPassword } = useContext(authContext)
+    const { handleLogin, handleGoogleLogin, setUser} = useContext(authContext)
     const [error, setError] = useState('')
     const location = useLocation()
     const navigate = useNavigate()
+    const emailRef = useRef()
     const handleSubmit = (e) => {
         e.preventDefault()
         const email = e.target.email.value
@@ -28,6 +31,17 @@ const Login = () => {
         .then(() => {
             navigate(location?.state ? location.state : "/") 
         })
+    }
+    const handleResetPassword = () => {
+        const email = emailRef.current.value
+        if(!email){
+            console.log("Please valid a email address");
+        }else{
+            sendPasswordResetEmail(auth, email)
+            .then(() => {
+                alert("Password reset email send, please check your email")
+            })
+        }
     }
     return (
         <div className="w-11/12 mx-auto py-5">
@@ -51,6 +65,7 @@ const Login = () => {
                                 type="email"
                                 id="email"
                                 name="email"
+                                ref={emailRef}
                                 className="w-full p-2 mt-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 placeholder="Enter your email"
                                 required
@@ -77,7 +92,7 @@ const Login = () => {
                         }
                         <div className="mb-4">
                             <button
-                                onClick={resetPassword}
+                                onClick={handleResetPassword}
                                 className="text-sm text-blue-500 hover:underline"
                             >
                                 Forget Password?
