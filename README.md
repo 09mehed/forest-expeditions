@@ -1,8 +1,29 @@
-# React + Vite
+# Forest Expeditions
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A user-friendly application designed for logging in, managing user authentication, and providing secure password reset functionality.
 
-Currently, two official plugins are available:
+## 🔗 Live URL
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## 🎯 Purpose
+The main purpose of this project is to create an intuitive and secure login system with additional features like Google authentication and password reset for seamless user experience.
+
+## ✨ Key Features
+- **User Authentication.
+- **Google Login.
+- **Password Reset.
+- **Responsive Design.
+- **Toast Notifications.
+
+## 🛠️ Technology Stack
+- **Frontend.
+- **Authentication.
+- **Toast Notifications.
+- **Routing.
+
+## 📦 NPM Packages Used
+Below are the npm packages used in this project:
+- **[react-router-dom](https://www.npmjs.com/package/react-router-dom)
+- **[react-toastify](https://www.npmjs.com/package/react-toastify)
+- **[react-helmet](https://www.npmjs.com/package/react-helmet)
+- **[firebase](https://www.npmjs.com/package/firebase)
