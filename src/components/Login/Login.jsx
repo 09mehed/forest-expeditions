@@ -1,58 +1,69 @@
 import { useContext, useRef, useState } from "react";
 import { authContext } from "../AuthProvider/AuthProvider";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { sendPasswordResetEmail } from "firebase/auth";
-import auth from "../../Firebase/firebase.config";
+// import { sendPasswordResetEmail } from "firebase/auth";
+// import auth from "../../Firebase/firebase.config";
 import { toast } from 'react-toastify';
 
 const Login = () => {
-    const { handleLogin, handleGoogleLogin, setUser} = useContext(authContext)
+    const { handleLogin, handleGoogleLogin, setUser } = useContext(authContext)
     const [error, setError] = useState('')
-    const location = useLocation()
+    // const location = useLocation()
     const navigate = useNavigate()
     const emailRef = useRef()
+    const [email, setEmail] = useState("")
 
     const handleSubmit = (e) => {
         e.preventDefault()
         const email = e.target.email.value
         const password = e.target.password.value
         handleLogin(email, password)
-        .then(res => {
-            const user = res.user
-            setUser(user)
-            const redirectTo = location?.state?.from || '/'; 
-            navigate(redirectTo);
-            toast.success("Successfully logged in!", {
-                position: "top-center",
-            });
-        })
-        .catch(err => {
-            setError(err.message);
-            toast.error("Login failed! Please try again.", {
-                position: "top-center",
-            });
-        })
+            .then(res => {
+                const user = res.user
+                setUser(user)
+                navigate("/");
+                toast.success("Successfully logged in!", {
+                    position: "top-center",
+                });
+            })
+            .catch(err => {
+                setError(err.message);
+                toast.error("Login failed! Please try again.", {
+                    position: "top-center",
+                });
+            })
     }
     const googleLoginHandler = () => {
         handleGoogleLogin()
-        .then(() => {
-            navigate(location?.state ? location.state : "/") 
-        })
-    }
-    const handleResetPassword = () => {
-        const email = emailRef.current.value
-        if(!email){
-            console.log("Please valid a email address");
-        }else{
-            sendPasswordResetEmail(auth, email)
-            .then(() => {
-                toast.success("Password reset email send, please check your email", {
+            .then((res) => {
+                const user = res.user;
+                setUser(user);
+                navigate("/");
+                toast.success("Successfully logged in with Google!", {
                     position: "top-center",
-                })
+                });
             })
-        }
+            .catch((err) => {
+                setError(err.message);
+                toast.error("Google login failed! Please try again.", {
+                    position: "top-center",
+                });
+            });
     }
+    // const handleResetPassword = () => {
+    //     const email = emailRef.current.value
+    //     if (!email) {
+    //         console.log("Please valid a email address");
+    //     } else {
+    //         sendPasswordResetEmail(auth, email)
+    //             .then(() => {
+    //                 toast.success("Password reset email send, please check your email", {
+    //                     position: "top-center",
+    //                 })
+    //             })
+    //     }
+    // }
     return (
         <div className="w-11/12 mx-auto py-5">
             <Helmet>
@@ -75,6 +86,8 @@ const Login = () => {
                                 type="email"
                                 name="email"
                                 ref={emailRef}
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)} 
                                 className="w-full p-2 mt-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 placeholder="Enter your email"
                                 required
@@ -99,12 +112,19 @@ const Login = () => {
                             error.login && <label className="label">{error.login}</label>
                         }
                         <div className="mb-4">
-                            <button
+                            {/* <button
                                 onClick={handleResetPassword}
                                 className="text-sm text-blue-500 hover:underline"
                             >
                                 Forget Password?
-                            </button>
+                            </button> */}
+                            <Link
+                                to="/forgotPassword"
+                                state={{ email }}
+                                className="text-sm text-blue-500 hover:underline"
+                            >
+                                Forget Password?
+                            </Link>
                         </div>
                         <button
                             type="submit"

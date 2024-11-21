@@ -7,6 +7,7 @@ import Login from "../components/Login/Login";
 import Register from "../components/Register/Register";
 import AdventureDetails from "../components/AdventureDetails/AdventureDetails";
 import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
+import ForgotPassword from "../components/ForgetPassword/ForgotPassword";
 
 
 const router = createBrowserRouter([
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
                     const singleData = data.find(d => d.id == params.id)
                     return singleData
                 }
+            },
+            {
+                path: '/forgotPassword',
+                element: <ForgotPassword></ForgotPassword>
             }
         ]
     },
