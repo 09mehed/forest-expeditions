@@ -2,14 +2,11 @@ import { useContext, useRef, useState } from "react";
 import { authContext } from "../AuthProvider/AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
-// import { sendPasswordResetEmail } from "firebase/auth";
-// import auth from "../../Firebase/firebase.config";
 import { toast } from 'react-toastify';
 
 const Login = () => {
     const { handleLogin, handleGoogleLogin, setUser } = useContext(authContext)
     const [error, setError] = useState('')
-    // const location = useLocation()
     const navigate = useNavigate()
     const emailRef = useRef()
     const [email, setEmail] = useState("")
@@ -51,19 +48,6 @@ const Login = () => {
                 });
             });
     }
-    // const handleResetPassword = () => {
-    //     const email = emailRef.current.value
-    //     if (!email) {
-    //         console.log("Please valid a email address");
-    //     } else {
-    //         sendPasswordResetEmail(auth, email)
-    //             .then(() => {
-    //                 toast.success("Password reset email send, please check your email", {
-    //                     position: "top-center",
-    //                 })
-    //             })
-    //     }
-    // }
     return (
         <div className="w-11/12 mx-auto py-5">
             <Helmet>
@@ -112,12 +96,6 @@ const Login = () => {
                             error.login && <label className="label">{error.login}</label>
                         }
                         <div className="mb-4">
-                            {/* <button
-                                onClick={handleResetPassword}
-                                className="text-sm text-blue-500 hover:underline"
-                            >
-                                Forget Password?
-                            </button> */}
                             <Link
                                 to="/forgotPassword"
                                 state={{ email }}
@@ -136,7 +114,6 @@ const Login = () => {
                     {error && <p className="text-red-500 font-semibold">{error.split("/")[1].slice(0, 18)}</p>}
 
                     <p>Do not have any account? Please <Link className="text-red-600 font-semibold" to='/register'>Register</Link> or <button onClick={googleLoginHandler} className="text-green-600 font-semibold">Google</button></p>
-
                 </div>
             </div>
         </div>
