@@ -3,7 +3,7 @@
 A user-friendly application designed for logging in, managing user authentication, and providing secure password reset functionality.
 
 # 🔗 Live URL
-### https://assignment-9-32b07.web.app/
+### [https://assignment-9-32b07.web.app/](https://resplendent-douhua-ed49a8.netlify.app/)
 
 
 # 🎯 Purpose
